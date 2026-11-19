@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import com.example.microservicio_gestion_de_tareas_jpa.TaskStatus.TaskStatus;
-
+import com.example.microservicio_gestion_de_tareas_jpa.Validation.OnCreate;
+import com.example.microservicio_gestion_de_tareas_jpa.Validation.OnUpdate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.groups.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,8 +19,8 @@ import lombok.Setter;
 public class TaskDTO {
     private UUID id;
 
-    @NotBlank
-    @Size(max = 100)
+    @NotBlank(groups = {OnCreate.class, OnUpdate.class})
+    @Size(groups = {Default.class, OnCreate.class, OnUpdate.class}, max = 100)
     private String title;
 
     @Size(max = 255)
@@ -28,6 +30,6 @@ public class TaskDTO {
 
     @Size(max = 100)
     private String assignedTo;
-    
+
     private LocalDate dueDate;
 }

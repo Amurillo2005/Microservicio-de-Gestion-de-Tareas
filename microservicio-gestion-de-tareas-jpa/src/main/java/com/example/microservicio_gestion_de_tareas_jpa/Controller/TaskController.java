@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.microservicio_gestion_de_tareas_jpa.DTO.TaskDTO;
 import com.example.microservicio_gestion_de_tareas_jpa.Service.TaskService;
 import com.example.microservicio_gestion_de_tareas_jpa.TaskStatus.TaskStatus;
+import com.example.microservicio_gestion_de_tareas_jpa.Validation.OnCreate;
+import com.example.microservicio_gestion_de_tareas_jpa.Validation.OnUpdate;
 
 import jakarta.validation.Valid;
-
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -36,7 +38,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<TaskDTO> createTask(@Valid @RequestBody TaskDTO taskDTO){
+    public ResponseEntity<TaskDTO> createTask(@Validated(OnCreate.class) @RequestBody TaskDTO taskDTO){
         TaskDTO createdTask = taskService.createTask(taskDTO);
         return ResponseEntity.created(URI.create("/tasks/" + createdTask.getId())).body(createdTask);
     }
@@ -54,13 +56,13 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TaskDTO> updateTask(@PathVariable UUID id, @Valid @RequestBody TaskDTO taskDTO){
+    public ResponseEntity<TaskDTO> updateTask(@PathVariable UUID id, @Validated(OnUpdate.class) @RequestBody TaskDTO taskDTO){
         TaskDTO updatedTask = taskService.updateTask(id, taskDTO);
         return ResponseEntity.ok(updatedTask);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<TaskDTO> updateTaskPartial(@PathVariable UUID id, @Valid @RequestBody TaskDTO taskDTO){
+    public ResponseEntity<TaskDTO> updateTaskPartial(@PathVariable UUID id, @Validated @RequestBody TaskDTO taskDTO){
         TaskDTO updatedTaskPartial = taskService.updateTaskPartial(id, taskDTO);
         return ResponseEntity.ok(updatedTaskPartial);
     }
