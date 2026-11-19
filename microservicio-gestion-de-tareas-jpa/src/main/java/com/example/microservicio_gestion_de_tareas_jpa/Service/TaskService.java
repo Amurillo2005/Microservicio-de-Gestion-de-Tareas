@@ -10,6 +10,6 @@ public interface TaskService {
     TaskDTO getTaskById(UUID id);
     TaskDTO updateTask(UUID id, TaskDTO taskDTO);
     TaskDTO updateTaskPartial(UUID id, TaskDTO taskDTO);
-    void deleteTask(UUID id);
     List<TaskDTO> getTasksByStatus(TaskStatus status);
+    void deleteTask(UUID id);
 }
