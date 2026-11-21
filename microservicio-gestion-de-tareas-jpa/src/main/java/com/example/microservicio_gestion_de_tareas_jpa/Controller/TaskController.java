@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.microservicio_gestion_de_tareas_jpa.DTO.TaskDTO;
-import com.example.microservicio_gestion_de_tareas_jpa.Service.TaskService;
+import com.example.microservicio_gestion_de_tareas_jpa.Service.Task.TaskService;
 import com.example.microservicio_gestion_de_tareas_jpa.TaskStatus.TaskStatus;
 import com.example.microservicio_gestion_de_tareas_jpa.Validation.OnCreate;
 import com.example.microservicio_gestion_de_tareas_jpa.Validation.OnUpdate;
-
-import jakarta.validation.Valid;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

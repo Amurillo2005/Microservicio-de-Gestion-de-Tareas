@@ -1,4 +1,4 @@
-package com.example.microservicio_gestion_de_tareas_jpa.Service;
+package com.example.microservicio_gestion_de_tareas_jpa.Service.Task;
 import com.example.microservicio_gestion_de_tareas_jpa.DTO.TaskDTO;
 import com.example.microservicio_gestion_de_tareas_jpa.TaskStatus.TaskStatus;
 import java.util.List;
